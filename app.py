@@ -12,7 +12,7 @@ st.markdown("""# Développer un POC
 ## POC : Détection de bad buzz et classification automatisée de sentiment via LLM.""")
 
 
-# @st.cache_data
+@st.cache_data
 def get_prediction(text_to_predict, with_answer):
     """Récupère la prediction de classification"""
 
