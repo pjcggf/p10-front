@@ -2,7 +2,7 @@ install:
 	@pip install -r requirements.txt
 
 streamlit:
-	-@streamlit run app.py
+	-@streamlit run POC.py
 
 clean:
 	@rm -fr */__pycache__
