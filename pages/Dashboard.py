@@ -6,6 +6,7 @@ from google.cloud import storage
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import pandas as pd
+
 st.set_page_config(page_title="P10-Dashboard", page_icon="🤖")
 
 PROJECT = 'p10-developper-poc'
@@ -36,7 +37,6 @@ with st.form('get_dashboard'):
                     options=langues.keys(), index=None)
     if langue:
         st.divider()
-
         data = pd.read_parquet(get_data(lang=langue))
         st.text(f"Nombres d'exemples disponibles : {data.shape[0]}")
         st.divider()
@@ -48,16 +48,16 @@ with st.form('get_dashboard'):
         st.pyplot(fig_label)
         st.divider()
         fig_long, ax_long = plt.subplots()
-        ax_long.hist(data.long)
+        ax_long.hist(data['long'])
         ax_long.set_title("Nombre de mots par phrases.")
         st.pyplot(fig_long)
     submit_prediction = st.form_submit_button('Afficher le dashboard')
 with st.form('get_wordcloud'):
-    nb_mots = st.slider('Nombres de mots à afficher:',10,100,50)
+    nb_mots = st.slider('Nombres de mots à afficher',10,100,50)
     if nb_mots and langue:
         data_sample = data.sample(data.shape[0]//8)
         text = " ".join(i for i in data_sample.cleaned_text)
-        wordcloud = WordCloud(background_color="white", max_words=nb_mots).generate(text)
+        wordcloud = WordCloud(background_color="beige", max_words=nb_mots).generate(text)
         fig, ax = plt.subplots()
         ax.imshow(wordcloud, interpolation='bilinear')
         ax.axis("off")
