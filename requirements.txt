@@ -4,4 +4,4 @@ google-cloud-storage
 numpy
 pandas
 pillow
-worldcloud
+wordcloud
