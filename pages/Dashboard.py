@@ -3,6 +3,11 @@ from io import BytesIO
 import re
 import streamlit as st
 from google.cloud import storage
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
 st.set_page_config(page_title="P10-Dashboard", page_icon="🤖")
 
 PROJECT = 'p10-developper-poc'

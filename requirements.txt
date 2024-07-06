@@ -1,2 +1,7 @@
 streamlit
 requests
+google-cloud-storage
+numpy
+pandas
+pillow
+worldcloud
