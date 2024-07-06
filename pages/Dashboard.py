@@ -6,6 +6,7 @@ from google.cloud import storage
 
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
 from PIL import Image
 st.set_page_config(page_title="P10-Dashboard", page_icon="🤖")
@@ -37,6 +38,7 @@ langue = st.radio('Pour quelle langue souhaitez-vous afficher les données ?',
 
 with st.form('get_dashboard'):
     if langue:
-        st.dataframe(get_data(lang=langue))
+        data = pd.read_parquet(get_data(lang=langue))
+        st.text(f"Nombres d'exemples disponibles : {data.shape}")
 
     submit_prediction = st.form_submit_button('Afficher le dashboard')
