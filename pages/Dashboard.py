@@ -27,18 +27,19 @@ langues = {
 def get_data(lang):
     '''Fonction pour récupérer le dataset à utiliser dans l'analyse'''
     lang = langues[lang]
-    data = BytesIO(bucket.get_blob(
+    data_file = BytesIO(bucket.get_blob(
     f'{lang}/data.parquet').download_as_bytes())
 
-    return data
+    return data_file
 
 
-langue = st.radio('Pour quelle langue souhaitez-vous afficher les données ?',
+langue = st.radio('Pour quelle langue souhaitez-vous afficher le dashboard ?',
                   options=langues.keys())
 
 with st.form('get_dashboard'):
     if langue:
         data = pd.read_parquet(get_data(lang=langue))
-        st.text(f"Nombres d'exemples disponibles : {data.shape}")
+        st.text(f"Nombres d'exemples disponibles : {data.shape[0]}")
+        st.bar_chart(data = data, x='label')
 
     submit_prediction = st.form_submit_button('Afficher le dashboard')
