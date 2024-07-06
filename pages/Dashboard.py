@@ -40,6 +40,8 @@ with st.form('get_dashboard'):
     if langue:
         data = pd.read_parquet(get_data(lang=langue))
         st.text(f"Nombres d'exemples disponibles : {data.shape[0]}")
-        st.bar_chart(data = data, x='label')
-
+        plot_label = data.label.plot(kind='hist')
+        plot_label.set_xticks(ticks=[0, 1], labels=["0-Négatif", "1-Positif"])
+        plot_label.set_title('Répartition des labels')
+        st.pyplot(plot_label)
     submit_prediction = st.form_submit_button('Afficher le dashboard')
