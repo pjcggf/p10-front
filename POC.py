@@ -68,7 +68,7 @@ langues = {
     'Anglais': 'en',
     'Français': 'fr',
     'Suédois': 'sw',
-    'Turque': 'tk',
+    'Turc': 'tk',
     'Hébreu': 'hb'
 }
 
